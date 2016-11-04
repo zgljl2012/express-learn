@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>express-learcn</title>
+	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+	<div>
+	<input type="text" id="sId" name="sId" placeholder="input">
+	<input type="button" onclick="add()" value="add">
+	</div>
+	<br>
+	<input type="button" onclick="json()" value="json-example">
+	<br><br>
+	<input type="button" onclick="text()" value="text-example">
+<script>
+var add = function(){
+	var sid = $("#sId").val();
+	$.post("/add", {sid:sid});
+}
+
+var json=function() {
+	$.ajax({
+		url:"/json",
+		type:"post",
+		data:'{"hello":"world"}',
+		dataType:"json",
+		contentType:"application/json; charset=utf-8",
+		success:function(d) {
+			console.log(d)
+		},
+		error:function(e) {
+			console.log(e)
+		}
+	})
+}
+
+var text = function() {
+	$.ajax({
+		url:"/text",
+		type:"post",
+		data:"hello world",
+		dataType:"text",
+		contentType:"text/plain; charset=utf-8",
+		success:function(d) {
+			console.log(d)
+		},
+		error:function(e) {
+			console.log(e)
+		}
+	})
+}
+
+</script>
+</body>
+</html>
